@@ -1,0 +1,83 @@
+---
+// This will be our CMS admin page
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keweenaw Now CMS</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    <script>
+      // Initialize Netlify CMS
+      if (typeof window !== 'undefined') {
+        window.CMS_MANUAL_INIT = true;
+        const CMS = window.CMS;
+        
+        // Set the config URL explicitly
+        CMS.registerPreviewStyle('/admin/cms.css');
+        
+        CMS.init({
+          config: {
+            // Set the config file location explicitly
+            load_config_file: true,
+            config: {
+              file: '/admin/config.yml',
+              // This tells the CMS to use the config file from the public directory
+              path: '/admin/config.yml'
+            },
+          backend: {
+            name: 'git-gateway',
+            branch: 'main',
+            repo: 'thiscitybyte/keweenaw-now',
+            site_domain: 'keweenaw-now.netlify.app'
+          },
+          media_folder: 'public/images/uploads',
+          public_folder: '/images/uploads',
+          collections: [
+            {
+              name: 'articles',
+              label: 'Articles',
+              folder: 'src/content/articles',
+              create: true,
+              slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+              fields: [
+                { label: 'Title', name: 'title', widget: 'string' },
+                { 
+                  label: 'Publish Date', 
+                  name: 'publishDate', 
+                  widget: 'datetime',
+                  format: 'YYYY-MM-DD',
+                  date_format: 'YYYY-MM-DD',
+                  time_format: false,
+                  required: true 
+                },
+                { label: 'Description', name: 'description', widget: 'text' },
+                { label: 'Body', name: 'body', widget: 'markdown' },
+                { 
+                  label: 'Tags', 
+                  name: 'tags', 
+                  widget: 'list',
+                  allow_add: true
+                },
+                { 
+                  label: 'Featured Image', 
+                  name: 'featuredImage', 
+                  widget: 'image',
+                  required: false,
+                  media_library: { config: { multiple: false } }
+                }
+              ]
+            }
+          ]
+        }
+      });
+      }
+    </script>
+  </head>
+  <body>
+    <!-- CMS will be mounted here -->
+  </body>
+</html>

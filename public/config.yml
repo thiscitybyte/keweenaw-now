@@ -1,0 +1,25 @@
+# For local development, use the test-repo backend
+backend:
+  name: test-repo  # This enables local development mode
+  branch: main
+  repo: thiscitybyte/keweenaw-now
+  site_domain: localhost:4321
+
+# For production, uncomment this and comment out the test-repo backend above
+# backend:
+#   name: git-gateway
+#   branch: main
+#   repo: thiscitybyte/keweenaw-now
+#   site_domain: keweenaw-now.netlify.app
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "posts"
+    label: "Posts"
+    folder: "src/content/posts"
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Body", name: "body", widget: "markdown" }

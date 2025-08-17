@@ -2,39 +2,44 @@
   command = "npm run build"
   publish = "dist"
 
-# Required for Netlify Identity
 [build.environment]
   NODE_VERSION = "20"
 
-# Required for Netlify CMS
-[[headers]]
-  for = "/admin/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "same-origin"
-
-# Required for Netlify CMS
+# Handle SPA routing - redirect all requests to index.html
 [[redirects]]
-  from = "/admin/*"
-  to = "/admin/index.html"
+  from = "/*"
+  to = "/index.html"
   status = 200
 
-# Required for Netlify Identity
+# Netlify Identity
 [[redirects]]
   from = "/.netlify/identity"
-  to = "/.netlify/identity"
+  to = "https://keweenaw-now.netlify.app/.netlify/identity"
   status = 200
 
-# Required for Netlify Identity
 [[redirects]]
   from = "/.netlify/identity/*"
-  to = "/.netlify/identity/"
+  to = "https://keweenaw-now.netlify.app/.netlify/identity/:splat"
   status = 200
 
-# Required for Netlify CMS media files
+# Media uploads
 [[redirects]]
   from = "/images/uploads/*"
   to = "/images/uploads/:splat"
   status = 200
+
+# Admin panel
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/"
+  status = 200
+
+# Enable CORS for Netlify CMS
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    X-Frame-Options = "ALLOW"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"

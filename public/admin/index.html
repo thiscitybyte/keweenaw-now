@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Manager</title>
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-</head>
-<body>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-  <script>
-    CMS.init({
-      config: {
-        backend: {
-          name: 'git-gateway',
-          branch: 'main'
-        },
-        load_config_file: true,
-        local_backend: window.location.hostname === 'localhost' && window.location.port === '4321',
-        media_folder: 'public/images/uploads',
-        public_folder: '/images/uploads'
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Content Manager</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+    <style>
+      html, body { 
+        margin: 0; 
+        padding: 0; 
+        height: 100%; 
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
       }
-    });
-  </script>
-</body>
+      #cms {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="cms"></div>
+    <script>
+      // Initialize Netlify CMS
+      if (typeof window !== 'undefined') {
+        window.CMS_MANUAL_INIT = true;
+        
+        // For local development, create a test user
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+          // Create a test user
+          const testUser = {
+            email: 'test@example.com',
+            password: 'password',
+            name: 'Test User'
+          };
+          
+          // Register the test user
+          CMS.registerBackend('test-repo', {
+            init: () => ({
+              user: () => ({
+                login: (credentials) => 
+                  credentials.password === testUser.password && 
+                  credentials.email === testUser.email
+              }),
+              auth: {
+                user: () => testUser,
+                logout: () => {}
+              }
+            })
+          });
+        }
+        
+        // Initialize CMS with config file
+        CMS.init({
+          config: {
+            load_config_file: true,
+            config_file: '/config.yml'
+          }
+        });
+      }
+    </script>
+  </body>
 </html>
