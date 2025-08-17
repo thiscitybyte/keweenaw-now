@@ -1,8 +1,8 @@
 backend:
   name: git-gateway
   branch: main
-  repo: your-username/your-repo-name
-  site_domain: your-site.netlify.app
+  repo: thiscitybyte/keweenaw-now
+  site_domain: keweenaw-now.netlify.app
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
