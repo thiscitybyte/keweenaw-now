@@ -9,6 +9,14 @@
     "preview": "astro preview",
     "format": "prettier --write ."
   },
+  {
+    "scripts": {
+      "prebuild": "astro sync",
+      "build": "astro build",
+      "dev": "astro dev",
+      "preview": "astro preview"
+    }
+  },
   "dependencies": {
     "@astrojs/netlify": "^4.1.1",
     "@iconify-json/lucide": "^1.1.191",
