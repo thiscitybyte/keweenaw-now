@@ -8,5 +8,19 @@
 </head>
 <body>
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <script>
+    CMS.init({
+      config: {
+        backend: {
+          name: 'git-gateway',
+          branch: 'main'
+        },
+        load_config_file: true,
+        local_backend: window.location.hostname === 'localhost' && window.location.port === '4321',
+        media_folder: 'public/images/uploads',
+        public_folder: '/images/uploads'
+      }
+    });
+  </script>
 </body>
 </html>

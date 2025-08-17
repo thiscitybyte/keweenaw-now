@@ -4,18 +4,10 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
+    "prebuild": "astro sync",
     "build": "astro build",
-    "preview": "astro preview",
-    "format": "prettier --write ."
-  },
-  {
-    "scripts": {
-      "prebuild": "astro sync",
-      "build": "astro build",
-      "dev": "astro dev",
+    "dev": "astro dev",
       "preview": "astro preview"
-    }
   },
   "dependencies": {
     "@astrojs/netlify": "^4.1.1",

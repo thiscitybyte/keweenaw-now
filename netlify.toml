@@ -2,17 +2,39 @@
   command = "npm run build"
   publish = "dist"
 
+# Required for Netlify Identity
+[build.environment]
+  NODE_VERSION = "20"
+
+# Required for Netlify CMS
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"
+
+# Required for Netlify CMS
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
 
+# Required for Netlify Identity
 [[redirects]]
   from = "/.netlify/identity"
   to = "/.netlify/identity"
   status = 200
 
+# Required for Netlify Identity
 [[redirects]]
   from = "/.netlify/identity/*"
   to = "/.netlify/identity/"
+  status = 200
+
+# Required for Netlify CMS media files
+[[redirects]]
+  from = "/images/uploads/*"
+  to = "/images/uploads/:splat"
   status = 200
