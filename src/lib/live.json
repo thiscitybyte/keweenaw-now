@@ -1,0 +1,20 @@
+[
+  {
+    "id": "live_1",
+    "ts": "2025-08-17T08:10:00-04:00",
+    "title": "MDOT: Lane closure on US\u201141 near Hancock 10am\u20113pm",
+    "sourceUrl": "https://www.michigan.gov/mdot"
+  },
+  {
+    "id": "live_2",
+    "ts": "2025-08-17T07:30:00-04:00",
+    "title": "Houghton: Special council session Tue 7pm (agenda posted)",
+    "sourceUrl": "#"
+  },
+  {
+    "id": "live_3",
+    "ts": "2025-08-16T22:15:00-04:00",
+    "title": "Thunderstorms overnight; NOAA wind advisory until 9am",
+    "sourceUrl": "https://www.weather.gov/"
+  }
+]

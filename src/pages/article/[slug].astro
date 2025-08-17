@@ -1,0 +1,45 @@
+---
+import '../../styles.css';
+import ArticleMeta from '../../components/ArticleMeta.astro';
+const { slug } = Astro.params;
+const article = {
+  title: 'Example: City Council special session recap',
+  ts: '2025-08-15T21:00:00-04:00',
+  dek: 'Plain‑English summary of what was decided, why it matters, and what’s next.',
+  body: [
+    'Council approved funding for sidewalk repairs on Oak St.',
+    'Parking ban to start Dec 1; reminders to go out via text and email.',
+    'Next session set for Sep 10; public comment invited on the budget line items.'
+  ],
+  sources: [
+    { label: 'Agenda PDF', href: '#' },
+    { label: 'Meeting Minutes', href: '#' }
+  ],
+  corrections: [
+    // { ts: '2025-08-16T10:05:00-04:00', text: 'Fixed a misspelling of a council member’s name.' }
+  ]
+};
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{article.title} — Keweenaw Now</title>
+  </head>
+  <body>
+    <header><div class="container"><a href="/">← Back</a></div></header>
+    <main class="container" style="padding-block:1.25rem">
+      <div class="meta">{new Date(article.ts).toLocaleString()}</div>
+      <h1 style="margin:.25rem 0 0">{article.title}</h1>
+      <p class="muted" style="margin:.25rem 0 1rem">{article.dek}</p>
+      <section class="grid grid-2">
+        <article class="card">
+          <ul>
+            {article.body.map(p => <li style="margin:.5rem 0">{p}</li>)}
+          </ul>
+        </article>
+        <ArticleMeta sources={article.sources} corrections={article.corrections} />
+      </section>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+---
+import type { EventItem } from '../lib/types';
+const { events = [] } = Astro.props as { events: EventItem[] };
+---
+<section class="card">
+  <div class="kicker">Upcoming Events</div>
+  {events.length === 0 ? <p class="muted">No events to show.</p> : (
+    <ul>
+      {events.map(ev => (
+        <li style="margin:.5rem 0">
+          <div class="meta">{new Date(ev.start).toLocaleString()}</div>
+          <strong>{ev.title}</strong>{ev.location && ` — ${ev.location}`}
+          {ev.url && (<div><a href={ev.url} rel="noopener noreferrer">details</a></div>)}
+        </li>
+      ))}
+    </ul>
+  )}
+</section>

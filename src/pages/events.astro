@@ -1,0 +1,24 @@
+---
+import '../styles.css';
+import EventList from '../components/EventList.astro';
+import sample from '../lib/sample-events.json';
+import { fetchEventsFromAirtable } from '../lib/airtable';
+
+const fetched = await fetchEventsFromAirtable().catch(() => null);
+const events = (fetched || sample).sort((a:any,b:any)=> new Date(a.start).getTime() - new Date(b.start).getTime());
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Events — Keweenaw Now</title>
+  </head>
+  <body>
+    <header><div class="container"><a href="/">← Back</a></div></header>
+    <main class="container" style="padding-block:1.25rem">
+      <h1>Events & Meetings</h1>
+      <p class="muted">Auto‑ingested from public calendars and Airtable (if configured). Send additions via the tip form.</p>
+      <EventList events={events} />
+    </main>
+  </body>
+</html>

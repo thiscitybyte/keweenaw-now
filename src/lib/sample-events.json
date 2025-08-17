@@ -1,0 +1,26 @@
+[
+  {
+    "id": "evt_1",
+    "title": "City Council Meeting",
+    "start": "2025-08-20T18:00:00-04:00",
+    "location": "City Hall",
+    "url": "#",
+    "source": "City Calendar"
+  },
+  {
+    "id": "evt_2",
+    "title": "Farmer's Market",
+    "start": "2025-08-22T09:00:00-04:00",
+    "location": "Waterfront",
+    "url": "#",
+    "source": "DDA"
+  },
+  {
+    "id": "evt_3",
+    "title": "Library Board",
+    "start": "2025-08-25T17:30:00-04:00",
+    "location": "Library",
+    "url": "#",
+    "source": "Library"
+  }
+]

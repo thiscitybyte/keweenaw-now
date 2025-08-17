@@ -1,0 +1,15 @@
+---
+import live from '../lib/live.json';
+---
+<section class="card">
+  <div class="kicker">Live updates</div>
+  <ul>
+    {live.map(item => (
+      <li style="margin:.5rem 0">
+        <div class="meta">{new Date(item.ts).toLocaleString()}</div>
+        <strong>{item.title}</strong>
+        {item.sourceUrl && (<div><a href={item.sourceUrl} rel="noopener noreferrer">source</a></div>)}
+      </li>
+    ))}
+  </ul>
+</section>

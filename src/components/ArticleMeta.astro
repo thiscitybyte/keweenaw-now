@@ -1,0 +1,17 @@
+---
+const { sources = [], corrections = [] } = Astro.props;
+---
+<section class="card">
+  <div class="kicker">Sources</div>
+  {sources.length === 0 ? <p class="muted">No external sources listed.</p> : (
+    <ul>
+      {sources.map((s) => <li><a href={s.href} rel="noopener noreferrer">{s.label}</a></li>)}
+    </ul>
+  )}
+  <div class="kicker" style="margin-top:.75rem">Corrections</div>
+  {corrections.length === 0 ? <p class="muted">None at this time.</p> : (
+    <ul>
+      {corrections.map((c) => <li><span class="meta">{c.ts}</span> — {c.text}</li>)}
+    </ul>
+  )}
+</section>

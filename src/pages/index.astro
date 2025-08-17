@@ -1,0 +1,53 @@
+---
+import '../styles.css';
+import LiveFeed from '../components/LiveFeed.astro';
+import ArticleMeta from '../components/ArticleMeta.astro';
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <title>Keweenaw Now — Hyper‑local updates</title>
+    <meta name="description" content="Fast, factual local updates for the Keweenaw." />
+  </head>
+  <body>
+    <header>
+      <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1rem;">
+        <a href="/" style="text-decoration:none"><strong>KEWEENAW NOW</strong></a>
+        <nav style="display:flex;gap:.75rem">
+          <a href="/events">Events</a>
+          <a href="/article/example">Example Article</a>
+          <a href="https://keweenawreport.com" target="_blank" rel="noopener noreferrer">Other Coverage →</a>
+        </nav>
+      </div>
+    </header>
+    <main class="container" style="padding-block:1.25rem">
+      <section class="grid" style="grid-template-columns: 2fr 1fr">
+        <div class="grid">
+          <h1 style="margin:0">Today</h1>
+          <LiveFeed />
+        </div>
+        <aside class="grid">
+          <div class="card">
+            <div class="kicker">Quick Links</div>
+            <ul style="margin:.5rem 0">
+              <li><a href="https://www.michigan.gov/mdot" target="_blank" rel="noopener">MDOT Road Updates</a></li>
+              <li><a href="https://www.weather.gov/" target="_blank" rel="noopener">NOAA Weather</a></li>
+              <li><a href="/events">Public Meetings Calendar</a></li>
+            </ul>
+          </div>
+          <ArticleMeta sources={[{label:'About this project', href:'#'}]} corrections={[]} />
+        </aside>
+      </section>
+    </main>
+    <footer>
+      <div class="container" style="padding:1rem 1rem">
+        <span class="meta">© {new Date().getFullYear()} Keweenaw Now · Built with Astro · Be fast, be kind.</span>
+      </div>
+    </footer>
+    <script>
+      if ('serviceWorker' in navigator) { navigator.serviceWorker.register('/sw.js'); }
+    </script>
+  </body>
+</html>
